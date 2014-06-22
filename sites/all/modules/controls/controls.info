@@ -1,0 +1,6 @@
+name = controls
+description = Control form on site
+core = 7.x
+package = Controls
+version = 7.x-1.0
+project = controls

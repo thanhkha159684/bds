@@ -1,0 +1,11 @@
+name = Google Connect
+description = Allows users to register / login using Gmail Account.
+core = 7.x
+configure = admin/settings/gconnect
+
+; Information added by drupal.org packaging script on 2013-09-30
+version = "7.x-1.x-dev"
+core = "7.x"
+project = "gconnect"
+datestamp = "1380580592"
+

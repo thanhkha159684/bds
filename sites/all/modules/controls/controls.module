@@ -1,0 +1,130 @@
+<?php
+
+include'search_land.inc';
+include 'node_land.inc';
+include 'quick_search.inc';
+function controls_init(){
+  /*
+  global $user;
+  if(isset($_SESSION['fb']))  {
+  foreach($_SESSION['fb'] as $id)  {
+    $fbu= $id['fbu'];
+  } 
+  if(@$fbu){
+  $uid=db_query('SELECT fb.uid FROM {fb_user} fb WHERE fb.fbu = :fbu',array(":fbu"=>$fbu))->fetchAll();
+  if(@$uid[0]){ 
+    $user=user_load($uid[0]->uid);
+  }
+  }
+ }
+ */
+
+}
+/*
+function controls_menu(){
+  $items['dang-tin']=array(
+  'page callback'=>'drupal_get_form',
+  'page arguments'=>array('controls_add_land_form'),
+  'access callback'=> true,
+  'type'=> MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+*/
+function controls_form_alter(&$form, $form_state, $form_id) {
+    if($form_id=="bat_dong_san_node_form") LandsFormAlter($form, $form_state, $form_id);
+    if($form['#id']=="views-exposed-form-search-land-block") SearchLandsFormAlter($form, $form_state, $form_id);
+    if($form['#id']=="views-exposed-form-searching-block") QuickSearhFormLandAlter($form, $form_state, $form_id);
+    //dsm($form['#id']);
+ return $form;
+}
+
+
+
+function controls_views_query_alter(&$view, &$query){ 
+    if($view->name=="search_land_page") SeachLandQueryAlter($view, $query);
+     if($view->name=="searching") QuickSearchQueryAlter($view, $query);
+}
+    
+  
+
+function controls_views_pre_view(&$view, &$display_id, &$args){
+    
+   if($view->name=="search_land_page") SearchLandPageCallback($view, $display_id, $args);      
+}
+//function controls_theme(){
+//  return array(
+//  'node_add_f'
+//  
+//  );
+//}
+function controls_block_info() {
+  $blocks['user-info']=array(
+  'info'=>t('Block User Info'),
+  );
+  $blocks['add-land']=array(
+  'info'=>t('Block add land'),
+  );
+  return $blocks;
+}
+function controls_block_view($delta="") {
+  switch ($delta) {
+    case 'user-info':
+    $block['content']=get_user_info();
+    break;
+    case "add-land":
+    $block['content']=controls_add_land_form();
+    break;
+  }
+  return $block;
+}
+function get_user_info(){
+  global $user;
+  $content="";
+  if($user->uid==0){
+    $elements = drupal_get_form('user_login_block');
+    $content.='<span class="login-button" href="#">Đăng nhập</span>
+              <div id="login-form">';
+    $content.=drupal_render($elements);
+    $fbuser=module_invoke('fb_connect','block_view','login_batdongsan');
+    $content.='<div class="fb-user">'.$fbuser['content'].'</div>';
+      
+    $content.='</div>';
+    $content.="
+    <script>
+      jQuery(function($){
+      $('.login-button').click(function(){
+       $.colorbox({html:$('#login-form').html()});
+      });
+      });
+    </script>";
+  }else{
+    $fbuser=module_invoke('fb_connect','block_view','login_batdongsan');
+    $content.='<div class="fb-user">'.$fbuser['content'].'</div>';
+  }
+return $content;
+}
+function controls_add_land_form(){
+  global $user;
+  
+  $node = (object) array(
+  'uid' => $user->uid,
+  'name' => (isset($user->name) ? $user->name : ''),
+  'type' => 'bat_dong_san',
+  'language' => LANGUAGE_NONE,
+  );
+  //$node=node_load(1);
+  $form_state = array();
+  $form_state['build_info']['args'] = array($node);
+  form_load_include($form_state, 'inc', 'node', 'node.pages');
+  $form= drupal_build_form('bat_dong_san_node_form', $form_state);
+  
+  $removes=array(//'#groups','#fieldgroups','#group_children',
+  'field_project','field_company');
+  foreach ($removes as $remove){
+    unset($form[$remove]);
+  }
+
+  return $form;
+
+}

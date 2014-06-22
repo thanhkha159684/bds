@@ -1,0 +1,38 @@
+
+
+.quicktabs_main.quicktabs-style-basic{
+  background-color:#fff;
+  padding:10px;
+  clear:both;
+}
+ul.quicktabs-tabs.quicktabs-style-basic{
+  margin:0;
+  padding: 0px;
+}
+ul.quicktabs-tabs.quicktabs-style-basic a{
+  text-decoration:none;
+  color:#aaa;
+  display: inline-block;  
+  padding: 10px;
+  border-left:1px solid #ccc;
+  border-right: none;
+}
+ul.quicktabs-tabs.quicktabs-style-basic a:hover{
+  color:#555;
+}
+ul.quicktabs-tabs.quicktabs-style-basic li{
+  border-bottom:none;
+  margin:0px;
+  padding: 0px;
+  display: inline-block;
+  
+  position:relative;
+}
+ul.quicktabs-tabs.quicktabs-style-basic li:hover{
+
+}
+ul.quicktabs-tabs.quicktabs-style-basic li.active{
+  aborder-bottom:1px solid #fff;
+  background-color:#fff;
+}
+
