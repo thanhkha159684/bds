@@ -1,9 +1,9 @@
 <?php
 
 include'search_land.inc';
-include 'node_land.inc';
 include 'quick_search.inc';
 function controls_init(){
+  module_load_include('inc','controls','node_land');
   /*
   global $user;
   if(isset($_SESSION['fb']))  {
@@ -20,17 +20,17 @@ function controls_init(){
  */
 
 }
-/*
+
 function controls_menu(){
-  $items['dang-tin']=array(
-  'page callback'=>'drupal_get_form',
-  'page arguments'=>array('controls_add_land_form'),
+  $items['thanh-vien/dang-tin']=array(
+  'title'=>'Đăng tin', 
+  'page callback'=>'controls_add_land_form',
   'access callback'=> true,
   'type'=> MENU_NORMAL_ITEM,
   );
   return $items;
 }
-*/
+
 function controls_form_alter(&$form, $form_state, $form_id) {
     if($form_id=="bat_dong_san_node_form") LandsFormAlter($form, $form_state, $form_id);
     if($form['#id']=="views-exposed-form-search-land-block") SearchLandsFormAlter($form, $form_state, $form_id);
@@ -49,15 +49,9 @@ function controls_views_query_alter(&$view, &$query){
   
 
 function controls_views_pre_view(&$view, &$display_id, &$args){
-    
    if($view->name=="search_land_page") SearchLandPageCallback($view, $display_id, $args);      
 }
-//function controls_theme(){
-//  return array(
-//  'node_add_f'
-//  
-//  );
-//}
+
 function controls_block_info() {
   $blocks['user-info']=array(
   'info'=>t('Block User Info'),
@@ -73,7 +67,7 @@ function controls_block_view($delta="") {
     $block['content']=get_user_info();
     break;
     case "add-land":
-    $block['content']=controls_add_land_form();
+    $block['content'] = '<i class="icon-upload-2"></i><a class="create-node-btn" href="'.url('thanh-vien/dang-tin').'">Đăng tin</a>';
     break;
   }
   return $block;
@@ -81,13 +75,15 @@ function controls_block_view($delta="") {
 function get_user_info(){
   global $user;
   $content="";
-  if($user->uid==0){
-    $elements = drupal_get_form('user_login_block');
+  if($user->uid==0) {
+    //$elements = drupal_get_form('user_login_block');
     $content.='<span class="login-button" href="#">Đăng nhập</span>
               <div id="login-form">';
-    $content.=drupal_render($elements);
-    $fbuser=module_invoke('fb_connect','block_view','login_batdongsan');
-    $content.='<div class="fb-user">'.$fbuser['content'].'</div>';
+    //$content.= render($elements);
+    $login_form = module_invoke('user','block_view','login');
+    $content .= render($login_form['content']);
+    //$fbuser=module_invoke('fb_connect','block_view','login_batdongsan');
+    //$content.='<div class="fb-user">'.$fbuser['content'].'</div>';
       
     $content.='</div>';
     $content.="
@@ -98,33 +94,40 @@ function get_user_info(){
       });
       });
     </script>";
-  }else{
-    $fbuser=module_invoke('fb_connect','block_view','login_batdongsan');
-    $content.='<div class="fb-user">'.$fbuser['content'].'</div>';
-  }
+  } else {
+   // $fbuser=module_invoke('fb_connect','block_view','login_batdongsan');
+   // $content.='<div class="fb-user">'.$fbuser['content'].'</div>';
+    //$content .= "<a href='".DRUPAL_ROOT."/user'>".t('Xin chào, ').$user->name."</a>".l('user/logout',t('Đăng xuất'));
+  } 
 return $content;
 }
+
+
+
 function controls_add_land_form(){
   global $user;
-  
+  if (!user_is_logged_in()) drupal_goto('user/login');
+
   $node = (object) array(
   'uid' => $user->uid,
   'name' => (isset($user->name) ? $user->name : ''),
   'type' => 'bat_dong_san',
   'language' => LANGUAGE_NONE,
   );
-  //$node=node_load(1);
+
   $form_state = array();
   $form_state['build_info']['args'] = array($node);
   form_load_include($form_state, 'inc', 'node', 'node.pages');
-  $form= drupal_build_form('bat_dong_san_node_form', $form_state);
-  
+  $form = drupal_build_form('bat_dong_san_node_form', $form_state);
+ 
   $removes=array(//'#groups','#fieldgroups','#group_children',
   'field_project','field_company');
   foreach ($removes as $remove){
     unset($form[$remove]);
   }
-
-  return $form;
+  
+  $form['#prefix'] = '<h2 class="block-title">'.t('Xin vui lòng nhập thông tin bất động sản').'</h2>';
+  $form['field_images']['#prefix'] ='<div class="caption">'.t('<b>Mẹo :</b> Bạn nên nhập hình ảnh cho bất động sản để dược nổi bật hơn so với bất động sản không có hình ảnh').'</div>';
+  return drupal_render($form);
 
 }

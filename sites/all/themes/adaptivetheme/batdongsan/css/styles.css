@@ -1,3 +1,22 @@
+@import url("icomoon/icon-style.css");
+@font-face {
+    font-family: SEGOEUIL;
+  
+    src: url('../font/SEGOEUIL.eot') format('embedded-opentype'),
+         url('../font/SEGOEUIL.woff') format('woff'),
+         url('../font/SEGOEUIL.ttf') format('truetype');
+      /*   url('../font/SEGOEUIL.svg') format('svg');*/
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: SEGO;
+  
+    src:  url('../font/segoe.ttf') format('truetype');
+      /*   url('../font/SEGOEUIL.svg') format('svg');*/
+    font-weight: normal;
+    font-style: normal;
+}
 html{
     overflow-x: hidden;
 }
@@ -17,10 +36,16 @@ border:1px gray solid;
     border:none;
 } 
 body{
-    font-family: Tahoma !important;
-    font-size: 13px !important;
+
     background: #eee;
     z-index: -10;
+}
+body,select,input,p,label,a{
+    font-family: "SEGO", verdana, helvetica, sans-serif ;
+    font-size: 12px ;
+    font-weight: normal;
+    line-height: 20px;
+    color: #333 ;    
 }
 
 body.admin-menu{
@@ -31,7 +56,7 @@ body.admin-menu{
 /**
 
 devel style
- */
+ 
 #tasks{
     z-index: 1;
     position: absolute;
@@ -39,6 +64,7 @@ devel style
     border:none;
  opacity: 0;
 }
+*/
 #tasks ul{
     float:left;
     margin: 0px;
@@ -54,9 +80,7 @@ devel style
   -webkit-box-sizing: border-box;
   -o-box-sizing: border-box;
 }
-a{
-color:#333;
-}
+
 #page a{
     text-decoration: none;
 
@@ -72,10 +96,11 @@ li {
 }
 .block-title
 {
+font-family: "SEGOEUIL";
 color: #fff;
 background:#E05416;
 padding:10px 15px; 
-font-size: 14px;
+font-size: 18px;
 width: 100%;
 display: inline-block; 
 
@@ -83,9 +108,13 @@ display: inline-block;
 .block-inner{
     margin: 0px;
 }
+
 #content-column .block-inner{
     margin-left: 0px;
     margin-right: 20px;
+}
+.region-sidebar-first {
+    padding-right:20px;
 }
 .region-sidebar-second .block-inner{
     margin-right:0px;
@@ -131,8 +160,9 @@ body:before{
 }
 #block-global-filter-global-filter-1 select{
     border: 1px solid #ccc;
-    padding:5px 10px;
-    border-radius: 3px;
+    padding:5px 15px;
+    background: transparent;
+    
 }
 #block-controls-user-info{
   float: right;
@@ -145,6 +175,27 @@ body:before{
   overflow:hidden;
   margin-top:5px; 
 }
+#block-controls-add-land {
+  float: right;
+  margin-right: 10px;
+  width: auto;
+  margin: 5px;
+  padding: 10px;
+  
+}
+#block-controls-add-land i{
+  color: #E05416;
+  font-size: 25px;
+  margin-right: 5px;
+}
+#block-controls-add-land .create-node-btn{
+  font-weight: bold;
+  font-size: 15px;
+  color: #E05416;
+  padding-top: 5px;
+  float: right;
+}
+
 /*colorbox*/
 #cboxClose{
     bottom: inherit;
@@ -754,7 +805,7 @@ background:;
 padding:20px 0px !important;
 margin:0px;
 width:100% !important;
-height:180px !important;
+height:210px !important;
 border: 1px solid #ccc;
 }
 .front-jcarousel .jcarousel-clip-horizontal {
@@ -785,7 +836,7 @@ background-position:0 0;
 }
 .front-jcarousel li{
 border: none !important;    
-height:150px !important;
+height:170px !important;
 width:151px !important;
 margin: 0px 0px 0px 15px !important;
 
@@ -860,7 +911,6 @@ position:relative;
 }
 .lands-sticky-list .views-field-title strong{
 color:#000;
-font-size:13px;
 }
 .lands-sticky-list .views-field-title:before{
     border-bottom: 5px solid rgba(0, 0, 0, 0);
@@ -896,11 +946,8 @@ overflow:hidden;
 }
 #block-views-list-company-block .views-field-title{
  font-weight: bold; 
- font-size: 12px;  
 }
-#block-views-list-company-block .views-field-body{
-color:#666;
-}
+
 
 #block-views-front-list-user-block .views-row{
 float:left;
@@ -1182,9 +1229,7 @@ width:50%;
 {
     width:100%
 }
-.list-companies .views-field-title{
-    font-weight: bold;
-}
+
 
 #block-views-company-detail-block .views-field{
   float:right;
@@ -1421,3 +1466,52 @@ border-bottom: 4px solid #ffffff;
   float:left;
   width:100%;
 }
+
+/*page manage user*/
+.view-user-infomation .view-header {
+    position: relative;
+}
+.view-user-infomation .view-header span:last-child {
+    position: absolute;
+    right: 0px;
+    top:0px;
+    padding: 10px 20px;
+    
+}
+.view-user-infomation .view-header span:last-child a,
+.view-user-infomation .view-header span:last-child i{
+    position: absolute;
+    padding: 10px;
+    color: #fff;
+    font-size: 25px;
+    right: 0px;
+    top:0px;
+}
+.view-user-infomation .view-header span:last-child a {
+    color: transparent;
+}
+
+.view-user-manage-land .views-row {
+    position:relative;
+    padding-right: 20px;
+
+}
+.view-user-manage-land .views-field-edit-node span {
+    colnor: transparent;
+}
+.view-user-manage-land .views-field-edit-node i,
+.view-user-manage-land .views-field-edit-node span{
+ position:absolute;
+ top: 0px;
+ padding: 10px;
+ font-size: 14px;
+ right:0px;
+ opacity: 0;
+}
+.view-user-manage-land .views-row:hover .views-field-edit-node i{
+    opacity: 1 !important;
+    z-index: 100;
+    color: blue;
+    
+}
+

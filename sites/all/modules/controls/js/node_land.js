@@ -146,7 +146,7 @@ function label_set_icon(selector){
   */
   
   var mapField=$('.field-name-field-map-form',form);
-  mapField.before('<div class="set-view-map"><label for="user_can_view_map"> Bạn có muốn thêm bản đồ cho bất động sản này</label><input id="user_can_view_map" type="checkbox" value="false"></div>');
+      mapField.before('<div class="set-view-map"><input id="user_can_view_map" type="checkbox" value="false"><label for="user_can_view_map"> Bạn có muốn thêm bản đồ cho bất động sản này</label></div>');
   $('#user_can_view_map',form).change(function() {
     if(!$(this).is(":checked")) {
       mapField.css({'visibility':'hidden',"position":'absolute','top':'-99999px'});
