@@ -1,0 +1,7 @@
+/tmp/*
+/sites/default/files/*.jpg
+/sites/default/files/*.png
+/sites/default/files/*.gif
+/sites/default/files/*.jpeg
+/sites/default/files/style
+/.htaccess
