@@ -1,0 +1,161 @@
+@import url("icomoon/icon-style.css");
+*{
+  box-sizing: border-box;
+}
+.region-sidebar-second{
+  display:none;
+}
+#main-content, .region-highlighted,
+.sidebar-second .content-inner {
+  margin: 0px !important;
+
+}
+body:not(.page-node) .vertical-tabs{
+  display:none;
+}
+#bat-dong-san-node-form{
+  padding: 10px 3%;
+}
+#bat-dong-san-node-form input[type="text"],
+#bat-dong-san-node-form select{
+  padding: 10px 5px;
+  color: #555;
+  width: 100%;
+  background: transparent;
+  border:1px solid #ccc;
+  width:290px;
+  margin-right: 20px;
+}
+#bat-dong-san-node-form .form-wrapper{
+  position: relative;
+}
+#bat-dong-san-node-form .field-suffix{
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+}
+
+#bat-dong-san-node-form i{
+    font-size: 15px;
+    color:#fff;
+    border:1px solid #fff;
+    border-radius: 50%;
+    width:30px;
+    height: 30px;
+    text-align: center;
+    line-height: 32px;
+    background: #39AE77;
+  }
+#bat-dong-san-node-form i.icon-none{
+  color: transparent;
+ 
+  background: #f0f0f0;
+}
+#bat-dong-san-node-form label{
+  cursor: pointer;
+  color: #555;
+  padding: 10px 5px;
+  font-weight: normal;
+}
+
+#bat-dong-san-node-form .form-wrapper:not(.field-group-fieldset){
+ float: left;
+ margin-right: 15px;
+ min-height:110px;
+}
+#bat-dong-san-node-form .form-item-title input{
+ width:100%;
+}
+#bat-dong-san-node-form fieldset {
+ width: 100%;
+}
+#bat-dong-san-node-form .term-reference-tree ul {
+ padding: 0px;
+}
+#bat-dong-san-node-form .term-reference-tree-level{
+  float: left; 
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#bat-dong-san-node-form  .term-reference-tree-level li{
+  float: left;
+  width: 100%;
+  cursor: pointer;
+}
+#bat-dong-san-node-form .term-reference-tree-level li li{
+  width: 30%;
+}
+#bat-dong-san-node-form .term-reference-tree-level .term-reference-tree-button,
+#bat-dong-san-node-form .term-reference-tree-level .no-term-reference-tree-button,
+#bat-dong-san-node-form .term-reference-tree-level input {
+  display: none;
+}
+
+
+#bat-dong-san-node-form .bds-type-tabs .header-tab{
+  padding:20px 10px;
+  color:#555;
+  background: #f0f0f0;
+}
+#bat-dong-san-node-form .bds-type-tabs .header-tab.active{
+  font-weight: bold;
+  color:#fff;
+  background: #39AE77;
+}
+.term-reference-tree{
+  float: left;
+  width: 100%;
+}
+.term-reference-tree > .bds-type-tabs{
+  width: 20% !important;
+  float: left;
+}
+.term-reference-tree > .term-reference-tree-level{
+  width: 80% !important;
+  padding-left: 15px !important;
+}
+#bat-dong-san-node-form .form-item-title, 
+.field-name-field-price-form,
+.field-name-field-currency-form{
+  float: left;
+  margin-right: 10px;
+}
+#bat-dong-san-node-form .form-item-title{
+  width: 100%;
+}
+#bat-dong-san-node-form .field-name-body{
+  width: 100%;
+}
+#bat-dong-san-node-form .field-name-body fieldset{
+  display:none;
+}
+.field-name-field-map-form{
+  float: left;
+  width: 100%;
+}
+.field-name-field-map-form .form-item,
+.field-name-field-map-form .description {
+  display:none;
+}
+#bat-dong-san-node-form .field-name-field-images-form {
+  width: 100%;
+}
+#bat-dong-san-node-form .field-name-field-dien-tich {
+  clear: both;
+}
+#bat-dong-san-node-form .set-view-map label{
+  float: left;
+  padding: 0px;
+}
+#bat-dong-san-node-form .set-view-map input{
+  float: left;
+  clear: both;
+  margin: 1px 5px;
+
+}
+#bat-dong-san-node-form .caption {
+  float:left;
+  width:100%;
+}
